@@ -1,3 +1,14 @@
+Ahh entendi! Você quer que:
+
+- **Inicialmente só apareça o cadeado, o título, a pergunta e as opções**.
+- **Depois que a pessoa acertar**, apareça:
+  - ✅ A confirmação da resposta correta.
+  - 📎 O link do próximo desafio: `https://eng-pablo-tec.github.io/cadeado1/`
+  - 🔑 A dica: **OS 5 PRIMEIROS NÚMEROS PRIMOS**
+
+Aqui está o código ajustado exatamente conforme você descreveu:
+
+```html
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -53,33 +64,23 @@
         button:hover {
             background-color: darkblue;
         }
-        #message {
+        #result {
             display: none;
             margin-top: 20px;
             font-size: 16px;
             color: black;
         }
-        #nextBtn {
-            display: none;
-            margin-top: 20px;
-            background-color: green;
-        }
-        #nextBtn:hover {
-            background-color: darkgreen;
+        #result a {
+            display: block;
+            margin-top: 10px;
+            color: green;
+            font-weight: bold;
+            text-decoration: none;
         }
         .hint {
-            margin-top: 30px;
+            margin-top: 10px;
             font-weight: bold;
             color: #333;
-        }
-        .extra-link {
-            margin-top: 15px;
-        }
-        .extra-link a button {
-            background-color: orange;
-        }
-        .extra-link a button:hover {
-            background-color: darkorange;
         }
     </style>
 </head>
@@ -99,18 +100,12 @@
             <label><input type="radio" name="answer" value="e"> e) set-background: yellow;</label>
         </div>
         <button onclick="checkAnswer()">Desbloquear</button>
-        <p id="message">✅ Parabéns! Você acertou. O código é <strong>235711</strong>.</p>
-        <a id="nextBtn" href="https://eng-pablo-tec.github.io/cadeado_html_2/">
-            <button>Ir para o próximo desafio 🔐</button>
-        </a>
 
-        <!-- Botão extra e pista -->
-        <div class="extra-link">
-            <a href="https://eng-pablo-tec.github.io/cadeado1/" target="_blank">
-                <button>🔁 Voltar ao início</button>
-            </a>
+        <div id="result">
+            ✅ Parabéns! Você acertou.<br>
+            🔗 Próximo cadeado: <a href="https://eng-pablo-tec.github.io/cadeado1/" target="_blank">https://eng-pablo-tec.github.io/cadeado1/</a>
+            <div class="hint">🔑 Pista: OS 5 PRIMEIROS NÚMEROS PRIMOS</div>
         </div>
-        <div class="hint">🔑 Pista: OS 5 PRIMEIROS NÚMEROS PRIMOS</div>
     </div>
 
     <script>
@@ -125,21 +120,21 @@
             }
 
             const lockIcon = document.getElementById("lockIcon");
-            const message = document.getElementById("message");
-            const nextBtn = document.getElementById("nextBtn");
+            const result = document.getElementById("result");
 
             if (selected === "c") {
                 lockIcon.textContent = "🔓";
                 lockIcon.classList.add("unlocked");
-                message.style.display = "block";
-                nextBtn.style.display = "inline-block";
+                result.style.display = "block";
             } else {
                 lockIcon.textContent = "🔒";
                 lockIcon.classList.remove("unlocked");
-                message.style.display = "none";
-                nextBtn.style.display = "none";
+                result.style.display = "none";
             }
         }
     </script>
 </body>
 </html>
+```
+
+Se quiser que a pergunta suma ou que os botões fiquem desativados após a resposta correta, posso adaptar também. É só falar!
