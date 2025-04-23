@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadeado Lógico - CSS</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+        }
+        .lock {
+            font-size: 50px;
+            color: red;
+        }
+        .unlocked {
+            color: green;
+        }
+        .question {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .options {
+            text-align: left;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        #message {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            color: black;
+        }
+        #nextBtn {
+            display: none;
+            margin-top: 20px;
+            background-color: green;
+        }
+        #nextBtn:hover {
+            background-color: darkgreen;
+        }
+        .hint {
+            margin-top: 30px;
+            font-weight: bold;
+            color: #333;
+        }
+        .extra-link {
+            margin-top: 15px;
+        }
+        .extra-link a button {
+            background-color: orange;
+        }
+        .extra-link a button:hover {
+            background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="lockIcon" class="lock">🔒</div>
+        <h2>Responda para desbloquear</h2>
+
+        <div class="question">
+            1. Como mudar a cor de fundo de um elemento em CSS?
+        </div>
+        <div class="options">
+            <label><input type="radio" name="answer" value="a"> a) color: red;</label>
+            <label><input type="radio" name="answer" value="b"> b) background: blue, color: white;</label>
+            <label><input type="radio" name="answer" value="c"> c) background-color: red;</label>
+            <label><input type="radio" name="answer" value="d"> d) font-color: red;</label>
+            <label><input type="radio" name="answer" value="e"> e) set-background: yellow;</label>
+        </div>
+        <button onclick="checkAnswer()">Desbloquear</button>
+        <p id="message">✅ Parabéns! Você acertou. O código é <strong>235711</strong>.</p>
+        <a id="nextBtn" href="https://eng-pablo-tec.github.io/cadeado_html_2/">
+            <button>Ir para o próximo desafio 🔐</button>
+        </a>
+
+        <!-- Botão extra e pista -->
+        <div class="extra-link">
+            <a href="https://eng-pablo-tec.github.io/cadeado1/" target="_blank">
+                <button>🔁 Voltar ao início</button>
+            </a>
+        </div>
+        <div class="hint">🔑 Pista: OS 5 PRIMEIROS NÚMEROS PRIMOS</div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const options = document.getElementsByName("answer");
+            let selected = null;
+            for (let opt of options) {
+                if (opt.checked) {
+                    selected = opt.value;
+                    break;
+                }
+            }
+
+            const lockIcon = document.getElementById("lockIcon");
+            const message = document.getElementById("message");
+            const nextBtn = document.getElementById("nextBtn");
+
+            if (selected === "c") {
+                lockIcon.textContent = "🔓";
+                lockIcon.classList.add("unlocked");
+                message.style.display = "block";
+                nextBtn.style.display = "inline-block";
+            } else {
+                lockIcon.textContent = "🔒";
+                lockIcon.classList.remove("unlocked");
+                message.style.display = "none";
+                nextBtn.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
